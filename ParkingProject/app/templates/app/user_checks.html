@@ -1,0 +1,18 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>My checks</h1>
+{% if object_list %}
+<ul>
+
+    {% for check in object_list %}
+    <li>
+        ID: {{ check.id }} Place: {{ check.place }} Price: {{ check.place.price }} Date: {{ check.dateOfActual }}
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>There are no check</p>
+{% endif %}
+{% endblock %}

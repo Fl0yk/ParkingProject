@@ -1,0 +1,18 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% if object_list %}
+<h1>All my places</h1>
+
+<ul>
+    {% for place in object_list %}
+    <li>
+        Number: {{ place.id }} Price: {{ place.price }} Car: {{ place.auto.brand }}, {{ place.auto.model }}
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>You don't have places'</p>
+{% endif %}
+{% endblock %}

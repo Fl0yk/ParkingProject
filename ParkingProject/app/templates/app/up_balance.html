@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+        <label for="{{ form.money.id_for_label }}">Replenishment amount:</label>
+        {{ form.money }}
+        {{ form.money.errors }}
+    </div>
+    <div>
+        <label for="{{ form.cupon.id_for_label }}">Coupon:</label>
+        {{ form.cupon }}
+        {{ form.cupon.errors }}
+    </div>
+    <input type="submit" value="Top up balance" />
+</form>
+{% endblock %}

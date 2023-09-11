@@ -1,0 +1,22 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div>
+        <p>Number: {{ car.num }}</p>
+    </div>
+    <div>
+        <label for="{{ form.brand.id_for_label }}">Brand:</label>
+        {{ form.brand }}
+        {{ form.brand.errors }}
+    </div>
+    <div>
+        <label for="{{ form.model.id_for_label }}">Model:</label>
+        {{ form.model }}
+        {{ form.model.errors }}
+    </div>
+    <input type="submit" value="Save" />
+</form>
+{% endblock %}

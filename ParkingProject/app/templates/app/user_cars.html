@@ -1,0 +1,44 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+        <label for="{{ form.num.id_for_label }}">Number:</label>
+        {{ form.num }}
+        {{ form.num.errors }}
+    </div>
+    <div>
+        <label for="{{ form.brand.id_for_label }}">Brand:</label>
+        {{ form.brand }}
+        {{ form.brand.errors }}
+    </div>
+    <div>
+        <label for="{{ form.model.id_for_label }}">Model:</label>
+        {{ form.model }}
+        {{ form.model.errors }}
+    </div>
+    <input type="submit" value="Save" />
+</form>
+{% if object_list %}
+<h1>All my cars</h1>
+
+<ul>
+    {% for car in object_list %}
+    <li>
+        Number: {{ car.num }}  Brand: {{ car.brand }} Model: {{ car.model }} <a href="editAuto/{{ car.id }}">Edit</a> | <a href="deleteAuto/{{ car.id }}">Delete</a>
+    </li>
+    {% endfor %}
+
+</ul>
+{% else %}
+<p>You don't have cars'</p>
+{% endif %}
+{% endblock %}

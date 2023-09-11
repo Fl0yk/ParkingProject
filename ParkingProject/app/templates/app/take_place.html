@@ -1,0 +1,27 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>
+        <label>Choose car:</label>
+        <select name="carId">
+            <option disabled selected>Here cars</option>
+            {% for car in cars %}
+            <option value="{{ car.id }}">{{ car.num }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <p>
+        <label>Choose place:</label>
+        <select name="placeId">
+            <option disabled selected>Here places</option>
+            {% for place in places %}
+            <option value="{{ place.id }}">{{ place.id }}</option>
+            {% endfor %}
+        </select>
+    </p>
+    <input type="submit" value="Reserve" />
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<h1>Admin statistics</h1>
+<form method="post" action="{% url 'admin_stat' %}">
+    {% csrf_token %}
+    <input type="submit" value="Write off money" />
+</form>
+<div style="width: 700px; height: 500px;">
+    {{plot|safe}}
+</div>
+{% endblock %}
