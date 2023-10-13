@@ -52,22 +52,63 @@
     <Folder Include="app\static\app\" />
     <Folder Include="app\static\app\content\" />
     <Folder Include="app\static\app\fonts\" />
+    <Folder Include="app\static\app\Images\" />
+    <Folder Include="app\static\app\Videos\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="app\templates\registration\" />
     <Folder Include="ParkingProject\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\static\app\content\corusel.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\static\app\content\flex.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\static\app\content\grid.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\static\app\content\news.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\static\app\content\sertificate.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\static\app\content\table_stat.css">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="app\static\app\Images\empty_cell.png" />
+    <Content Include="app\static\app\Images\vacancy.png" />
+    <Content Include="app\static\app\Images\banner.jpg" />
+    <Content Include="app\static\app\Images\banner1.jpg" />
+    <Content Include="app\static\app\Images\default.png" />
+    <Content Include="app\static\app\Images\logo.ico" />
+    <Content Include="app\static\app\Images\banner2.jpg" />
+    <Content Include="app\static\app\Images\main_logo.jpg" />
+    <Content Include="app\static\app\Images\ornament.png" />
+    <Content Include="app\static\app\Images\sertificate_fon.jpg" />
+    <Content Include="app\static\app\Images\signature.png" />
+    <Content Include="app\static\app\Images\twitch.png" />
+    <Content Include="app\static\app\Images\vk.png" />
+    <Content Include="app\static\app\Policy.pdf" />
+    <Content Include="app\static\app\Videos\horse.mp4" />
+    <Content Include="app\static\app\Videos\obernites.mp3" />
     <Content Include="app\templates\app\admin_statistic.html" />
+    <Content Include="app\templates\app\current_news.html" />
     <Content Include="app\templates\app\edit_auto.html" />
+    <Content Include="app\templates\app\employees.html" />
     <Content Include="app\templates\app\empty_place_list.html" />
+    <Content Include="app\templates\app\news.html" />
     <Content Include="app\templates\app\personal_page.html" />
     <Content Include="app\templates\app\registration.html" />
+    <Content Include="app\templates\app\rewiews.html" />
     <Content Include="app\templates\app\take_place.html" />
     <Content Include="app\templates\app\up_balance.html" />
     <Content Include="app\templates\app\user_cars.html" />
     <Content Include="app\templates\app\user_checks.html" />
     <Content Include="app\templates\app\user_places.html" />
+    <Content Include="app\templates\app\vacancies.html" />
     <Content Include="app\templates\registration\logged_out.html" />
     <Content Include="app\templates\registration\login.html" />
     <Content Include="app\templates\registration\password_reset_complete.html" />

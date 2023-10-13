@@ -3,40 +3,63 @@
 <head>
     <meta charset="utf-8" />
     <title>Auto Parking</title>
+    <meta name="author" content="Kosach Dima" />
+    <meta name="description"
+          content="Every person will find a suitable place for themselves" />
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/grid.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/corusel.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/sertificate.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/news.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/flex.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/table_stat.css' %}" />
+    <link rel="shortcut icon" href="{% static 'app/Images/logo.ico' %}" type="image/x-icon" />
 </head>
 
 <body>
     <header>
-        <nav>
-            <a href="/" class="navbar-brand">Hello Django</a>
-            <a href="{% url 'home' %}" class="navbar-item">Home</a>
-            <a href="{% url 'about' %}" class="navbar-item">About Us</a>
-            <a href="#" class="navbar-item">News</a>
-            <a href="#" class="navbar-item">Questions</a>
-            <a href="#" class="navbar-item">Contacts</a>
-            <a href="#" class="navbar-item">Vacancies</a>
-            <a href="#" class="navbar-item">Reviews</a>
+        <nav class="navbar">
+            <a href="/" class="navbar-brand">
+                Parking
+            </a>
+            <a href="{% url 'home' %}" class="navbar-item" tabindex="1">Home</a>
+            <a href="{% url 'about' %}" class="navbar-item" tabindex="2">About Us</a>
+            <a href="{% url 'news' %}" class="navbar-item" tabindex="3">News</a>
+            <a href="{% url 'employees' %}" class="navbar-item" tabindex="5">Contacts</a>
+            <a href="{% url 'vacansies' %}" class="navbar-item" tabindex="6">Vacancies</a>
+            <a href="{% url 'reviews' %}" class="navbar-item" tabindex="7">Reviews</a>
             {% if user.is_authenticated %}
-            <a href="{% url 'user' %}" class="navbar-item">My Account</a>
+            <a href="{% url 'user' %}" class="navbar-item" tabindex="8">My Account</a>
             {% if user.is_superuser %}
             <a href="{% url 'admin_stat' %}" class="navbar-item">Statistic</a>
+            <a href="/admin/" hidden accesskey="a">Admin panel</a>
             {%endif%}
             <h class="navbar-item">User: {{ user.get_username }}</h>
-            <a href="{% url 'logout' %}" class="navbar-item">Logout</a>
+            <a href="{% url 'logout' %}" class="navbar-item" tabindex="9">Logout</a>
             {% else %}
-            <a href="{% url 'login' %}" class="navbar-item">Login</a>
+            <a href="{% url 'login' %}" class="navbar-item" tabindex="8">Login</a>
             {% endif %}
-
-            <a href="/admin/" hidden accesskey="a">Admin panel</a>
         </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
+    <hr />
     <footer>
-        {{ content }}
+        <div class="round">
+            <a href="https://vk.com/">
+                <img alt="Hmmm..." src="{% static 'app/Images/vk.png' %}" width="40" height="40" />
+            </a>
+        </div>
+        <div class="round">
+            <a href="https://www.twitch.tv/">
+                <img alt="Hmmm..." src="{% static 'app/Images/twitch.png' %}" width="40" height="40" />
+            </a>
+        </div>
+        <div>
+            &copy;
+        </div>
     </footer>
 </body>
 </html>

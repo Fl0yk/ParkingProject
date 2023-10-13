@@ -1,13 +1,40 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-<p>Place statistics:</p>
-<ul>
-    <li><strong>Empty places:  </strong>{{ num_empty_placces }}</li>
-    <li><a href="{% url 'places' %}">See more</a></li>
-</ul>
+{% load static %}
+<div class="carousel-container">
+    <div class="carousel">
+        <img src="{% static 'app/Images/banner1.jpg' %}" alt="Hmmmm">
+        <img src="{% static 'app/Images/banner.jpg' %}" alt="Hmmmm">
+        <img src="{% static 'app/Images/banner2.jpg' %}" alt="Hmmmm">
+    </div>
+</div>
 
-<h2>Random joke</h2>
-<p>{{ setup }}</p>
-<p>Punchline: {{ punch }}</p>
+<section id="lastnews">
+    {% if news %}
+    <h2>The Last News</h2>
+    <hr />
+    <article class="one-news">
+        <h3>{{ news.title }}</h3>
+        <p class="news-text">{{ news.text }}</p><br />
+        <a href="news/{{ news.id }}">Read more...</a>
+        <p>{{ news.dateOfActual }}</p>
+    </article>
+    <hr />
+    {% endif %}
+</section>
+
+<section id="placestat">
+    <h2>Place statistics:</h2>
+    <ul>
+        <li><strong>Empty places:  </strong>{{ num_empty_placces }}</li>
+        <li><a href="{% url 'places' %}">See more</a></li>
+    </ul>
+</section>
+
+<section id="joke">
+    <h2>Random joke</h2>
+    <p>{{ setup }}</p>
+    <p>Punchline: {{ punch }}</p>
+</section>
 {% endblock %}

@@ -1,0 +1,43 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<section id="rewiews">
+    <h2>Users reviews</h2>
+    {% if reviews %}
+    <hr />
+    {% for review in reviews %}
+    <article>
+        <h4>{{ review.title }}</h4>
+        <p>{{ review.text }}</p>
+        <p>Date of actual: {{ review.dateOfActual }}</p>
+        <p>Author: {{ review.client.username }}</p>
+    </article>
+    <hr />
+    {% endfor %}
+    {% else %}
+    <p>Be the first to rewiew</p>
+    {% endif %}
+</section>
+
+
+<section id="leave_fd">
+    <h2>Add </h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label>
+                Title:
+                <input type="text" required autofocus name="title" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Rewiew:
+                <textarea name="text" cols="20" rows="8" required></textarea>
+            </label>
+        </div>
+        <input type="submit" value="Leave feedback" />
+    </form>
+</section>
+
+{% endblock %}

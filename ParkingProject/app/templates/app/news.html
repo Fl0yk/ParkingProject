@@ -1,0 +1,19 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<section id="news_section">
+    <h1>News Page</h1>
+    {% if news %}
+    {% for new in news %}
+    <article class="one-news">
+        <h3>{{ new.title }}</h3>
+        <p class="news-text">{{ new.text }}</p>
+        <a href="{{ new.id }}">Read more...</a>
+        <p>{{ new.dateOfActual }}</p>
+    </article>
+    {% endfor %}
+    {% else %}
+    <p>There no news</p>
+    {% endif %}
+</section>
+{% endblock %}

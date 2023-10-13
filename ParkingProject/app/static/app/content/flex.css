@@ -1,0 +1,9 @@
+.contacts-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-basis:content;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}

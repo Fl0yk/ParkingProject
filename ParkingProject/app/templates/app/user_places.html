@@ -7,7 +7,7 @@
 <ul>
     {% for place in object_list %}
     <li>
-        Number: {{ place.id }} Price: {{ place.price }} Car: {{ place.auto.brand }}, {{ place.auto.model }}
+        Number: {{ place.id }} Price: {{ place.price }} Car: {{ place.auto.num }}
     </li>
     {% endfor %}
 

@@ -1,6 +1,8 @@
 """
 Definition of views.
 """
+from hmac import new
+from tkinter import Place
 import requests
 import random
 import logging
@@ -8,9 +10,10 @@ import logging
 from datetime import datetime
 from plotly.graph_objects import Bar, Layout, Figure
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import HttpRequest
+from django.db.models import Count
 
 from django.contrib.auth.hashers import make_password
 from django.http import Http404, HttpResponseRedirect
@@ -18,7 +21,7 @@ from django.views import generic, View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from .models import ParkingPlace, Check, Auto, Vacancy, Employee, News, Coupon, User
+from .models import ParkingPlace, Check, Auto, Vacancy, Employee, News, Coupon, User, Review
 
 from .forms import ClientForm, CarForm, BalanceForm
 
@@ -38,15 +41,17 @@ def home(request):
         joke_punch = ''
     
     num_empty_placces = ParkingPlace.objects.filter(isEmpty__exact=True).count()
+    news = News.objects.last()
+    #news.text = news.text[:20]
 
     return render(
         request,
         "app/index.html",  # Relative path from the 'templates' folder to the template file
         # "index.html", # Use this code for VS 2017 15.7 and earlier
         {
-            'content' : now.strftime("%d/%m/%y"),
             'num_empty_placces' : num_empty_placces,
             'setup' : joke_setup,
+            'news' : news,
             'punch' : joke_punch
         } 
     )
@@ -54,18 +59,96 @@ def home(request):
 def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)
-    url = 'https://pokeapi.co/api/v2/pokemon/' + str(random.randint(1, 1010))
-    res = requests.get(url).json()
-
-    pokemon_name = res['name']
-    pokemon_image = res['sprites']['front_default']
+    try:    
+        url = 'https://pokeapi.co/api/v2/pokemon/' + str(random.randint(1, 1010))
+        res = requests.get(url).json()
+        
+        pokemon_name = res['name']
+        pokemon_image = res['sprites']['front_default']
+    except:
+        pokemon_name = ''
+        pokemon_image = ''
+    coupons = Coupon.objects.all()
+    
     return render(
         request,
         "app/about.html",
         {
-            'title' : "Bobik",
+            'title' : "About this parking",
             'name' : pokemon_name,
-            'image' : pokemon_image
+            'image' : pokemon_image,
+            'coupons': coupons
+        }
+    )
+
+def news(request):
+    miniNews = list()
+    for new in News.objects.all().reverse():
+        tmp = new
+        tmp.text = tmp.text[:20]
+        miniNews.append(tmp)
+
+    return render(
+        request,
+        'app/news.html',
+        {
+            'news' : News.objects.all().reverse(),
+        }
+    )
+
+def reviews(request):
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('login'))
+        review = Review()
+        review.title = request.POST.get('title')
+        review.text = request.POST.get('text')
+        review.client = request.user
+        review.save()
+        
+    
+    reviews = Review.objects.all()
+
+    return render(
+        request,
+        'app/rewiews.html',
+        {
+            'reviews' : reviews,   
+        }
+    )
+
+def curNews(request, id):
+    try:
+        news = News.objects.filter(id=id).first()
+            
+        return render(request, 
+                      'app/current_news.html',
+                        {
+                            'news' : news,
+                        }
+                )
+
+    except News.DoesNotExist:
+        logger.info(f'News does not exist by {request.user.username}')
+        raise Http404('News not found')
+    
+
+def vacansies(request):
+    return render(
+        request,
+        'app/vacancies.html',
+        {
+            'vacancies' : Vacancy.objects.all(),
+        }
+    )
+
+
+def employees(request):
+    return render(
+        request,
+        'app/employees.html',
+        {
+            'employees' : Employee.objects.all(),
         }
     )
 
@@ -95,12 +178,27 @@ def UserRegistration(request):
             context={'form' : clientForm, })
 
 
-class EmptyPlacesView(generic.ListView):
-    model = ParkingPlace
-    template_name = 'app/empty_place_list.html'
+def EmptyPlaces(request):
+    if request.method == "POST":
+        min_price = request.POST.get('min_value')
+        if not min_price: min_price = min(ParkingPlace.objects.filter(isEmpty__exact=True), key=lambda x: x.price).price
+        max_price = request.POST.get('max_value')
+        if not max_price: max_price = max(ParkingPlace.objects.filter(isEmpty__exact=True), key=lambda x: x.price).price
+        object_list = ParkingPlace.objects.filter(isEmpty__exact=True) & ParkingPlace.objects.filter(price__range=(min_price, max_price))
+        max_val = max_price
+        min_val = min_price
+    else:
+        object_list = ParkingPlace.objects.filter(isEmpty__exact=True)
+        max_val = max(object_list, key=lambda x: x.price).price
+        min_val = min(object_list, key=lambda x: x.price).price
+        
 
-    def get_queryset(self):
-        return ParkingPlace.objects.filter(isEmpty__exact=True)
+    return render(
+            request,
+            'app/empty_place_list.html',
+            context={'object_list' : object_list,
+                     'min_val' : min_val,
+                     'max_val' : max_val})    
     
 
 @method_decorator(login_required, name='dispatch')
@@ -264,30 +362,48 @@ def AdminStatistics(request):
                 owner.check_set.add(check)
                 owner.balance -= place.price
                 owner.save()
+            
+            if not check.client:
+                check.delete()
     
+    
+    fig = GetProfitPlot()
+    debtors = GetDebtors()  
+    cars = Auto.objects.annotate(users_num=Count('users')).filter(users_num__gt=1)
+    carsCount = list((car, car.users.count() + 1) for car in cars)
+
+    return render(
+        request,
+        'app/admin_statistic.html',
+        context={
+                    'plot' : fig.to_html(full_html=False),
+                    'debtors' : debtors,
+                    'cars' : carsCount
+                 }
+        )
+
+def GetProfitPlot():
+    now = datetime.now().date()
     months = []
     profits = []
 
     for m in range(1, 13):
         months.append(m)
-        checks_of_month = Check.objects.filter(dateOfActual__month=m)
+        checks_of_month = Check.objects.filter(dateOfActual__year=now.year).filter(dateOfActual__month=m)
         sum = 0
         for check in checks_of_month:
             sum += check.place.price
         profits.append(sum)
 
-    data = Bar(x=months, y=profits)
+    data = Bar(x=months, y=profits)  
+
     layoyt = Layout(title='Parking profit',
                     xaxis=dict(title='Months'),
                     yaxis=dict(title='profits'))
-    fig = Figure(data=data, layout=layoyt)
+    return Figure(data=data, layout=layoyt)
 
-    return render(
-        request,
-        'app/admin_statistic.html',
-        context={'plot' : fig.to_html(full_html=False), }
-        )
-
+def GetDebtors():
+    return sorted(User.objects.filter(balance__lt=0), key=lambda user: user.balance, reverse=True)
 
 @login_required
 def UpBalance(request):
@@ -296,9 +412,15 @@ def UpBalance(request):
         if form.is_valid():
             client = request.user
             money = form.cleaned_data['money']
-            cupon = form.cleaned_data['cupon']
-            if(cupon):
-                money = money + money * cupon
+            cuponName = form.cleaned_data['cupon']
+            if(cuponName):
+                try:
+                    coupon = Coupon.objects.filter(value=cuponName).first()
+                    if coupon and coupon.amount_of_use > 0:
+                        money = money + money * coupon.bonus
+                        coupon.amount_of_use -= 1
+                except Coupon.DoesNotExist:
+                    logger.info(f'User {client.username} does not exist coupon {cuponName}')
 
             client.balance += money
             client.save()

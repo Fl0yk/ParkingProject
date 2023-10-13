@@ -1,0 +1,24 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<section id="vacansies_section">
+    <h1>Available vacansies</h1>
+    {% if vacancies %}
+    {% for vacancy in vacancies %}
+    <hr />
+    <div class="vacansy">
+        <img src="{% static 'app/Images/vacancy.png' %}" alt="Hmmmm..." />
+        <h3>{{ vacancy.job_title }}</h3>
+        <p>Salary: {{ vacancy.salary }}</p>
+        <details>
+            <summary>Description:</summary>
+            <p>{{ vacancy.description }}</p>
+        </details>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>There no vacansies</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+{% load static %}
+<section id="vacansies_section">
+    <h1>Employees</h1>
+    {% if employees %}
+    <div class="contacts-container">
+        {% for employe in employees %}
+        <div>
+            <img alt="Hmmm..." src="{{employe.foto.url}}" width="70" height="70" />
+            <p>{{ employe.client.username }}</p>
+            <p>{{ employe.client.number }}</p>
+            <p>{{ employe.vacancy.job_title }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <!--<table border="1">
+        <thead>
+            <tr>
+                <th>Avatar</th>
+                <th>Informations</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employe in employees %}
+            <tr>
+                <td rowspan="3">
+                    <img alt="Hmmm..." src="{{employe.foto.url}}" width="70" height="70" />
+                </td>
+                <td>{{ employe.client.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ employe.client.number }}</td>
+            </tr>
+            <tr>
+                <td>{{ employe.vacancy.job_title }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>-->
+    {% else %}
+    <p>There no employees</p>
+    {% endif %}
+</section>
+{% endblock %}

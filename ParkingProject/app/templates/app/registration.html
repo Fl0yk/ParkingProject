@@ -4,32 +4,46 @@
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.non_field_errors }}
-
-    <div>
-        <label for="{{ form.name.id_for_label }}">Username:</label>
-        {{ form.name }}
-        {{ form.name.errors }}
-    </div>
-    <div>
-        <label for="{{ form.mail.id_for_label }}">Email:</label>
-        {{ form.mail }}
-        {{ form.mail.errors }}
-    </div>
-    <div>
-        <label for="{{ form.number.id_for_label }}">Phone number:</label>
-        {{ form.number }}
-        {{ form.number.errors }}
-    </div>
-    <div>
-        <label for="{{ form.first_password.id_for_label }}">First password:</label>
-        {{ form.first_password }}
-        {{ form.first_password.errors }}
-    </div>
-    <div>
-        <label for="{{ form.second_password.id_for_label }}">Second password:</label>
-        {{ form.second_password }}
-        {{ form.second_password.errors }}
-    </div>
-    <input type="submit" value="Registration" />
+    <fieldset title="Registration">
+        <legend>Registration</legend>
+        <div>
+            <label for="{{ form.name.id_for_label }}">Username:</label>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div>
+            <label for="{{ form.mail.id_for_label }}">Email:</label>
+            {{ form.mail }}
+            {{ form.mail.errors }}
+        </div>
+        <div>
+            <label for="{{ form.number.id_for_label }}">Phone number:</label>
+            {{ form.number }}
+            {{ form.number.errors }}
+        </div>
+        <div>
+            <label for="{{ form.first_password.id_for_label }}">First password:</label>
+            {{ form.first_password }}
+            {{ form.first_password.errors }}
+        </div>
+        <div>
+            <label for="{{ form.second_password.id_for_label }}">Second password:</label>
+            {{ form.second_password }}
+            {{ form.second_password.errors }}
+        </div>
+        <div>
+            <label>
+                18+? 
+                <input type="radio" name="a" required />
+            </label>
+        </div>
+        <div>
+            <label>
+                Banned text input: 
+                <input type="text" disabled />
+            </label>
+        </div>
+        <input type="submit" value="Registration" />
+    </fieldset>
 </form>
 {% endblock %}

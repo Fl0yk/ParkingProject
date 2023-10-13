@@ -1,0 +1,37 @@
+.carousel-container {
+    position: relative;
+    z-index: 1;
+    top: 40px;
+    left: 6%;
+    width: 400px;
+    height: 250px;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    animation: carousel-animation 10s infinite alternate;
+}
+
+.carousel img {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes carousel-animation {
+    0% {
+        transform: translateX(0);
+    }
+
+    33.33% {
+        transform: translateX(-100%);
+    }
+
+    66.66% {
+        transform: translateX(-200%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -1,8 +1,153 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
+{% load static %}
 <h1>{{ title }}</h1>
-<p>There should be a text here</p>
-<h2>POKEMOOOON {{ name }}</h2>
-<img src={{ image }} width="120" height="120"/>
+<nav class="vertical">
+    <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pokemon">Pokemon</a></li>
+        <li><a href="#questions">Questions</a></li>
+        <li><a href="#requisites">Requisites</a></li>
+        <li><a href="#certificate">Certificate</a></li>
+        <li><a href="#audioandvideo">Audio and video</a></li>
+        <li><a href="#others">Others elements</a></li>
+        <li><a href="#policy">Download policy</a></li>
+    </ul>
+</nav>
+
+<div class="main-logo">
+    <img src="{% static 'app/Images/main_logo.jpg' %}" alt="main logo" />
+</div>
+
+<section id="services">
+    <details>
+        <summary>Book your place</summary>
+        <p>You can see is <a href="{% url 'places' %}">Here!</a></p>
+    </details>
+    <details>
+        <summary>View available places</summary>
+        <p>You can see is <a href="{% url 'user_places' %}">Here!</a></p>
+    </details>
+</section>
+
+<section id="pokemon">
+    {% if image and name %}
+    <h2>POKEMOOOON {{ name }}</h2>
+    <img src={{ image }} alt="Hmmm..." width="120" height="120" />
+    {% else %}
+    <p>No internet connection</p>
+    {% endif %}
+</section>
+
+<section id="questions">
+    <h2>Most popular questions</h2>
+    <details>
+        <summary>Where to see available places?</summary>
+        <p>You can see is <a href="{% url 'places' %}">Here!</a></p>
+    </details>
+    <hr />
+    <details>
+        <summary>Where to see employees informations?</summary>
+        <p>You can see is <a href="{% url 'employees' %}">Here!</a></p>
+    </details>
+    <hr />
+    <details>
+        <summary>What coupons are there?</summary>
+        <ul class="coupons">
+            {% for coupon in coupons %}
+            <li>
+                {{ coupon.value }}<br />
+                Percentage on replenishment: {{ coupon.bonus }}<br />
+                Amount of use: {{ coupon.amount_of_use }}
+            </li>
+            {% endfor %}
+        </ul>
+    </details>
+</section>
+<br />
+<br />
+
+<section id="requisites">
+    <hr />
+    <div class="bankcart">
+        <p>Bank account number: BY06 MMBN 3012 0000 1101 0000 0000</p>
+        <p>Owner: Kosach Dzmitry</p>
+        <p>Validity: <time>2028-02</time></p>
+    </div>
+    <hr />
+</section>
+<br />
+<br />
+
+<section id="certificate">
+    <hr />
+    <div class="sertificate-container">
+        <div class="title">
+            <strong>Certificate of Completion</strong>
+        </div>
+        <div class="organization">
+            <i>This is to certify that</i><br /><br />
+            <b>Parking</b>
+        </div>
+        <div class="license-name">
+            <i>has completed a license</i> <br /><br />
+            <span>Blabla license</span> 
+        </div>
+        <div class="license-date">
+            <span><i>dated</i></span><br>
+            <time>2020-12-12</time>
+        </div>
+        <div class="signature">
+            <img src="{% static 'app/Images/signature.png' %}" alt="Hmmmm..."/>
+        </div>
+        <div class="gradient"></div>
+    </div>
+    <hr />
+</section>
+<br />
+<br />
+<section id="audioandvideo">
+    <video width="360" height="240"
+           src="{% static 'app/Videos/horse.mp4' %}"
+           autoplay muted controls loop>
+        Video cannot be displayed
+    </video>
+    <br />
+    <br />
+    <audio controls src="{% static 'app/Videos/obernites.mp3' %}" title="Oberniteees!">
+        Audio content cannot be played
+    </audio>
+</section>
+<br />
+<br />
+<br />
+<section id="others">
+    <div class="codeblock">
+    <code class="cisharp">
+        string str = "Hello World!";<br />
+        Console.WriteLine(str);
+    </code>
+    </div>
+    <br />
+    <abbr title="Federal Bureau of Investigation">FBI</abbr>
+    <br />
+    <br />
+    <q cite="https://en.wikipedia.org/wiki/Assembly_language#Assembler">
+        <dfn>Assembly</dfn> is any low-level programming language with a very strong
+        correspondence between the instructions in the language and the architecture's
+        machine code instructions.
+    </q>
+    <br />
+    <br />
+    <iframe src="https://en.wikipedia.org/wiki/Assembly_language#Assembler"></iframe>
+    <br />
+    Brush up<wbr /> like a rocket.<br />
+    Brush down<wbr /> like a plane.<br />
+    Brush round<wbr /> and round,<br />
+    Like choo<wbr /> choo train.<br />
+    <br />
+    <br />
+</section>
+<a id="policy" download href="{% static 'app/Policy.pdf' %}">Download Policy</a>
 {% endblock %}

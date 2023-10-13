@@ -2,16 +2,30 @@
 
 {% block content %}
 <h1>All empty places</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <label>
+        Min:
+        <input type="number" name="min_value" min="{{ min_val }}" value="{{ min_val }}" />
+    </label>
+    -
+    <label>
+        Max:
+        <input type="number" name="max_value" max="{{ max_val }}" value="{{ max_val }}" />
+    </label>
+    <input type="submit" value="Sort" />
+</form>
 {% if object_list %}
-<ul>
+<div class="grid-container">
 
     {% for place in object_list %}
-    <li>
-        Place: {{ place.id }} Price: {{ place.price }}
-    </li>
+    <div>
+        Place: {{ place.id }}<br />
+        Price: {{ place.price }}
+    </div>
     {% endfor %}
 
-</ul>
+</div>
 {% else %}
     <p>There are no empty place in the parking</p>
 {% endif %}

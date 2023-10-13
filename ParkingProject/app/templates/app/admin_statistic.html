@@ -6,6 +6,54 @@
     {% csrf_token %}
     <input type="submit" value="Write off money" />
 </form>
+<br />
+<sections id="debtors">
+    {% if debtors %}
+    <h3>Debtors list</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Duty</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for debtor in debtors %}
+            <tr>
+                <td>{{ debtor.username }}</td>
+                <td>{{ debtor.balance }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>There are no debtors</p>
+    {% endif %}
+    <table class="car-stat" border="1">
+        <caption><h3>Cars with many clients</h3></caption>
+        <thead>
+            <tr>
+                <th>Car</th>
+                <th>Clients</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car, size in cars %}
+            <tr>
+                <td rowspan="{{ size }}">
+                    {{ car.num }}
+                </td>
+                <td></td>
+            </tr>
+            {% for user in car.users.all %}
+            <tr>
+                <td>{{ user.username }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</sections>
 <div style="width: 700px; height: 500px;">
     {{plot|safe}}
 </div>

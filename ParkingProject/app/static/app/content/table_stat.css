@@ -1,0 +1,31 @@
+table.car-stat{
+    margin: 10px;
+    caption-side: top;
+    text-align: center;
+    vertical-align: middle;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+table.car-stat tr{
+    background-color: blanchedalmond;
+    height: 50px;
+}
+
+table.car-stat td {
+    color: darkslategrey;
+    border: 2px solid gold;
+    min-width: 100px;
+    height: 50px;
+}
+
+table.car-stat td:empty {
+    background-image: url(../Images/empty_cell.png);
+    background-size: cover;
+}
+
+table.car-stat th {
+    color: azure;
+    background-color: dimgrey;
+    border: 3px solid black;
+}

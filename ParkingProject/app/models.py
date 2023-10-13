@@ -70,12 +70,21 @@ class User(AbstractUser):
     
 class News(models.Model):
     title = models.CharField(max_length=30)
+    dateOfActual = models.DateField(auto_now_add=True, null=True)
     text = models.TextField()
+    
+    class Meta:
+        verbose_name = 'News'
+        verbose_name_plural = 'News'
+        ordering = ['dateOfActual', ]
 
 class Coupon(models.Model):
     value = models.CharField(max_length=20, primary_key=True)
     bonus = models.DecimalField(max_digits=3, decimal_places=2, default=0)
-    is_used = models.BooleanField(default=False)
+    amount_of_use = models.IntegerField(max_length=3, default=1)
+    
+    def __str__(self) -> str:
+        return str(self.value)
 
 class Vacancy(models.Model):
     job_title = models.CharField(max_length=40)
@@ -85,13 +94,18 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name = 'Vacancy'
         verbose_name_plural = "Vacancies"
+        
+    def __str__(self):
+        return str(self.job_title)
     
 
 class Review(models.Model):     #отзыв
     client = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=30)
+    dateOfActual = models.DateField(auto_now_add=True, null=True)
     text = models.TextField()
 
 class Employee(models.Model):
     client = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    foto = models.ImageField(upload_to='static/app/Images', default='static/app/Images/default.png')
     vacancy = models.OneToOneField(Vacancy, on_delete=models.SET_NULL, null=True)

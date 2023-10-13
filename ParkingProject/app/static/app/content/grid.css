@@ -1,0 +1,14 @@
+.grid-container {
+    border: 1px dashed red;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+}
+
+.grid-container > div{
+    background-color:aliceblue;
+    border: 5px inset gold;
+    margin: 15px;
+    text-align: center;
+    border-radius: 8px;
+}

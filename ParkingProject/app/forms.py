@@ -35,11 +35,13 @@ class ClientForm(forms.Form):
 class CarForm(forms.Form):
     num_validetor = RegexValidator(regex=r"^\d{4}\s\w{2}-\d$")
 
-    num = forms.CharField(max_length=9, validators=[num_validetor], help_text="1111 AA-7")
+    num = forms.CharField(max_length=9, validators=[num_validetor, ], help_text="1111 AA-7")
     model = forms.CharField(max_length=20, min_length=2)
     brand = forms.CharField(max_length=20, min_length=2)
-    
+
     def clean(self):
+        if not 'num' in self.cleaned_data:
+            raise forms.ValidationError('Bad number')
         in_num = self.cleaned_data['num']
         in_model = self.cleaned_data['model']
         in_brand = self.cleaned_data['brand']
@@ -50,7 +52,4 @@ class CarForm(forms.Form):
 class BalanceForm(forms.Form):
     money = forms.DecimalField(min_value=0.01, max_value=1000, max_digits=6, decimal_places=2)
     cupon = forms.CharField(max_length=10, min_length=2, required=False)
-    
-    def clean_cupon(self):
-        pass
             

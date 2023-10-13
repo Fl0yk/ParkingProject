@@ -1,0 +1,71 @@
+.sertificate-container {
+    display: grid;
+    width: 400px;
+    z-index: 1;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px;
+    background-image: url(../Images/sertificate_fon.jpg);
+    background-size: inherit;
+    border: 30px solid black;
+    padding: 20px;
+    border-image: url(../Images/ornament.png) 200 round;
+}
+
+.sertificate-container div {
+    text-align: center;
+    margin: 8px;
+    padding: 12px 5px 5px 4px;
+}
+
+.sertificate-container > .title {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row: 1;
+    font-size: 1.2em;
+}
+
+.sertificate-container  .organization {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row: 2;
+    font-size: 1em;
+}
+
+.sertificate-container  .license-name {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row: 3;
+    font-size: 1em;
+}
+
+.sertificate-container  .license-date {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row: 4;
+    font-size: 1em;
+}
+
+.sertificate-container .signature {
+    z-index: 2;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row: 4;
+    background-color: transparent;
+}
+
+.sertificate-container .signature > img {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+}
+
+    .sertificate-container .gradient {
+        z-index: 2;
+        grid-column-start: 3;
+        grid-column-end: 4;
+        width: 80px;
+        grid-row: 4;
+        background: -moz-linear-gradient(top, orange, white);
+        background: -webkit-linear-gradient(top, blue, white);
+        background: -o-linear-gradient(top, red, white);
+    }

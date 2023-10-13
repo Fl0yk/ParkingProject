@@ -1,36 +1,315 @@
+html, body {
+    margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
+    font-size: 18px;
+}
+
+body {
+    padding-top: 40px;
+}
+
+html {
+    background: repeating-radial-gradient(rgba(255,0,0,50%), rgba(0,0,255,50%) 20px);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+
+main{
+    padding: 50px 0 0 0;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 80px;
+}
+
+p, h1, h2, h3, h4, h5, h6, summary{
+    text-indent: 30px;
+    line-height: normal;
+    font-variant-ligatures: common-ligatures;
+    letter-spacing: 1px;
+    word-spacing: 8px;
+    word-break: break-word;
+    position: static;
+    text-align: left;
+    padding-right: 5px;
+}
+
+h1{
+    text-transform: uppercase;
+}
+
+#lastnews {
+    width: 450px;
+    position: relative;
+    z-index: 1;
+    top: -200px;
+    left: 41%;
+}
+
+.round{
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    margin: 8px;
+    border-radius: 100px;
+    border: 3px solid #000000;
+    box-shadow: 5px 5px 10px 4px #ff6a00;
+}
+
+p.news::selection{
+    color: aquamarine;
+}
+
+p.news::first-letter{
+    color:crimson;
+    font-size: 130%
+}
+
+p.news::after{
+    content: " - End news!";
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul.unicode > li::before{
+    content: "\20aa";
+}
+
+@media (max-width:900px), (max-height: 500px){
+    iframe[src]{
+        display: none;
+    }
+}
+
+iframe[src] {
+    width: 1000px;
+    height: 600px;
+}
+
+div.codeblock {
+    background-color: rgb(9, 2, 41);
+    max-width: 200px;
+}
+
+div.codeblock code {
+    color: rgb(86, 140, 240);
+}
+
+q[cite^="https"]{
+    color: green;
+}
+
+q:lang(en) {
+    quotes: "\201C" "\201D";
+
+}
+
+q:lang(fr) {
+    quotes: "\00AB" "\00BB";
+}
+
+
+a:link{
+    text-decoration: none;
+    color: darkturquoise;
+}
+
+a:visited{
+    color: coral;
+}
+
+a:hover{
+    cursor: wait;
+}
+
+a:active{
+    cursor:pointer;
+}
+
+a[href$=".pdf"] {
+    font-size: 22px;
+    color: red;
+}
+
+input[type="text"]:focus{
+    background-color: cadetblue;
+}
+
+input:enabled {
+    border: 2px solid green;
+}
+
+input:disabled{
+    background-color: slategrey;
+}
+
+input:required{
+    background-color:mediumvioletred;
+}
+
+input:out-of-range{
+    color: darkred;
+}
+
+input[type="radio"]:checked:after,
+input[type="checkbox"]:checked:after {
+    padding: 0 0 0 20px;
+    font-size: 18px;
+    color: crimson;
+    content: "selected:)";
+}
+
+div input{
+    margin: 6px;
+}
+
+input[type="text"], input[type="password"] {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #333;
+}
+
+input[type="submit"] {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    background-color: cornsilk;
+    color:darkgreen;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin: 6px;
+}
+
+li:nth-child(even), tr:nth-child(even) {
+    background-color: cornflowerblue;
+}
+
+li:nth-child(odd), tr:nth-child(odd) {
+    color:gold;
+}
+
+li:first-child, tr:first-child {
+    background-color: aquamarine;
+}
+
+li:last-child, tr:last-child {
+    background-color:crimson;
+}
+
 .message {
     font-weight: 600;
     color: blue;
 }
 
-nav {
+nav.navbar {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    text-align: center;
     background-color: lightslategray;
-    font-size: 1em;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.2em;
     color: white;
     padding: 8px 5px 8px 5px;
+    width: 100%;
 }
 
-nav a {
+nav.navbar a {
     text-decoration: none;
     color: inherit;
 }
 
 .navbar-brand {
-    font-size: 1.2em;
+    text-align: left;
+    font-size: 1.5em;
     font-weight: 600;
+    font-kerning: normal;
 }
 
 .navbar-item {
     font-variant: small-caps;
-    margin-left: 30px;
+    margin: 10px;
 }
 
-.body-content {
-    padding: 5px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+nav.vertical {
+    width: 300px;
+    text-align: center;
 }
 
-ul {
-    list-style-type: none;
+nav.vertical a {
+    text-decoration: none;
+}
+
+nav.vertical li {
+    margin: 5px;
+    padding: 8px 5px 8px 5px;
+    background-color: cornsilk;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.main-logo {
+    width: 350px;
+    height: 350px;
+    position: relative;
+    z-index: 1;
+    top: -360px;
+    left: 45%;
+}
+
+.main-logo>img{
+    width: 100%;
+    height: 100%;
+    border: 6px outset gold;
+}
+
+.main-logo:hover {
+    transform: scale(1.4) !important;
+}
+
+
+description {
+    font-size: 18px; 
+    color: azure;
+    margin-bottom: 10px;
+}
+
+summary {
+    font-size: 16px; 
+    color: chartreuse; 
+    margin-bottom: 5px; 
+}
+
+summary:hover {
+    color: aqua; 
+}
+
+.vacansy img{
+    float: left;
+    width: 120px;
+    height: 80px;
+    padding: 8px 8px 8px 8px;
+}
+
+.vacansy details{
+    clear: left;
+}
+
+ul.coupons{
+    list-style:katakana;
+    list-style-position: inside;
+}
+
+ul.coupons li{
+    width: 220px;
+    border: 2px solid gold;
+    margin: 5px;
+    border-radius: 6px;
+    background-color: azure;
+    color:darkslateblue;
 }
