@@ -2,13 +2,27 @@
 
 {% block content %}
 {% load static %}
+
 <div class="carousel-container">
-    <div class="carousel">
-        <img src="{% static 'app/Images/banner1.jpg' %}" alt="Hmmmm">
-        <img src="{% static 'app/Images/banner.jpg' %}" alt="Hmmmm">
-        <img src="{% static 'app/Images/banner2.jpg' %}" alt="Hmmmm">
+    <div class="carousel-slide active">
+        <a href="#"><img src="{% static 'app/Images/banner1.jpg' %}" alt="Hmmmm"></a>
+    </div>
+    <div class="carousel-slide">
+        <a href="#"><img src="{% static 'app/Images/banner.jpg' %}" alt="Hmmmm"></a>
+    </div>
+    <div class="carousel-slide">
+        <a href="#"><img src="{% static 'app/Images/banner2.jpg' %}" alt="Hmmmm"></a>
     </div>
 </div>
+
+{% if user.is_superuser %}
+<div>
+    <label>
+        Enter time of change image:
+        <input type="range" value="4" id="imageSpeed" min="1" max="10" />
+    </label>
+</div>
+{% endif %}
 
 <section id="lastnews">
     {% if news %}
@@ -26,8 +40,8 @@
 
 <section id="placestat">
     <h2>Place statistics:</h2>
-    <ul>
-        <li><strong>Empty places:  </strong>{{ num_empty_placces }}</li>
+    <ul id="list">
+        <li><strong>Empty places:  </strong><span id="num">{{ num_empty_placces }}</span></li>
         <li><a href="{% url 'places' %}">See more</a></li>
     </ul>
 </section>
@@ -37,4 +51,8 @@
     <p>{{ setup }}</p>
     <p>Punchline: {{ punch }}</p>
 </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'app/scripts/CarouselScript.js' %}"></script>
 {% endblock %}

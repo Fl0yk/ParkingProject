@@ -27,7 +27,8 @@ DEBUG = True
 
 AUTH_USER_MODEL = 'app.User'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
+PORT = 8000
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS

@@ -2,23 +2,54 @@
 
 {% block content %}
 {% load static %}
+<!--<section id="top" class="bg-img cont">
+    <img id="leftImg" src="{% static 'app/Images/left.png' %}" alt="Hmm" class="bg-image" />
+    <img id="rightImg" src="{% static 'app/Images/right.jpg' %}" alt="Hmm" class="bg-image" />
+</section>-->
+<div class="parking">
+    <img class="parking-img" src="{% static 'app/Images/parking.jpg' %}" alt="parking">
+    <div class="car car1" id="car1"><img class="car1-img" src="{% static 'app/Images/car1r.png' %}" alt="car1"></div>
+    <div class="car car2" id="car2"><img class="car2-img" src="{% static 'app/Images/car2r.png' %}" alt="car2"></div>
+</div>
 <h1>{{ title }}</h1>
 <nav class="vertical">
     <ul>
-        <li><a href="#services">Services</a></li>
+        <!--<li><a href="#services">Services</a></li>
         <li><a href="#pokemon">Pokemon</a></li>
         <li><a href="#questions">Questions</a></li>
         <li><a href="#requisites">Requisites</a></li>
         <li><a href="#certificate">Certificate</a></li>
         <li><a href="#audioandvideo">Audio and video</a></li>
         <li><a href="#others">Others elements</a></li>
-        <li><a href="#policy">Download policy</a></li>
+        <li><a href="#policy">Download policy</a></li>-->
+        <li><a href="{% url 'tablejs' %}">JavaScript Table</a></li>
+        <li><a href="{% url 'birthdayjs' %}">Birthday task </a></li>
+        <li><a href="{% url 'mathjs' %}">Dynamic styles and math</a></li>
+        <li><a href="{% url 'elemjs' %}">Elements JavaScript</a></li>
     </ul>
 </nav>
 
-<div class="main-logo">
+<div class="card">
     <img src="{% static 'app/Images/main_logo.jpg' %}" alt="main logo" />
 </div>
+
+
+<br />
+<br />
+<p>Player 1 - x, player 2 - 0</p>
+<br />
+<div class="game">
+    <div class="game-block" data-item="0"></div>
+    <div class="game-block" data-item="1"></div>
+    <div class="game-block" data-item="2"></div>
+    <div class="game-block" data-item="3"></div>
+    <div class="game-block" data-item="4"></div>
+    <div class="game-block" data-item="5"></div>
+    <div class="game-block" data-item="6"></div>
+    <div class="game-block" data-item="7"></div>
+    <div class="game-block" data-item="8"></div>
+</div>
+<br />
 
 <section id="services">
     <details>
@@ -34,7 +65,7 @@
 <section id="pokemon">
     {% if image and name %}
     <h2>POKEMOOOON {{ name }}</h2>
-    <img src={{ image }} alt="Hmmm..." width="120" height="120" />
+    <img src={{ image }} alt="Hmmm..." width="250" height="250" />
     {% else %}
     <p>No internet connection</p>
     {% endif %}
@@ -92,14 +123,14 @@
         </div>
         <div class="license-name">
             <i>has completed a license</i> <br /><br />
-            <span>Blabla license</span> 
+            <span>Blabla license</span>
         </div>
         <div class="license-date">
             <span><i>dated</i></span><br>
             <time>2020-12-12</time>
         </div>
         <div class="signature">
-            <img src="{% static 'app/Images/signature.png' %}" alt="Hmmmm..."/>
+            <img src="{% static 'app/Images/signature.png' %}" alt="Hmmmm..." />
         </div>
         <div class="gradient"></div>
     </div>
@@ -124,10 +155,10 @@
 <br />
 <section id="others">
     <div class="codeblock">
-    <code class="cisharp">
-        string str = "Hello World!";<br />
-        Console.WriteLine(str);
-    </code>
+        <code class="cisharp">
+            string str = "Hello World!";<br />
+            Console.WriteLine(str);
+        </code>
     </div>
     <br />
     <abbr title="Federal Bureau of Investigation">FBI</abbr>
@@ -140,8 +171,6 @@
     </q>
     <br />
     <br />
-    <iframe src="https://en.wikipedia.org/wiki/Assembly_language#Assembler"></iframe>
-    <br />
     Brush up<wbr /> like a rocket.<br />
     Brush down<wbr /> like a plane.<br />
     Brush round<wbr /> and round,<br />
@@ -150,4 +179,11 @@
     <br />
 </section>
 <a id="policy" download href="{% static 'app/Policy.pdf' %}">Download Policy</a>
+<a href="http://www.freepik.com">Designed by brgfx / Freepik</a>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'app/scripts/ScrollScript.js' %}"></script>
+<script src="{% static 'app/scripts/GameScript.js' %}"></script>
+<script src="{% static 'app/scripts/CardScript.js' %}"></script>
 {% endblock %}

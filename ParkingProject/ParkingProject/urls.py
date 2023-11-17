@@ -28,6 +28,11 @@ urlpatterns = [
     path('takeplace/', views.TakePlace, name='take_place'),
     path('personal/upbalance/', views.UpBalance, name='up_balance'),
     path('adminstat/', views.AdminStatistics, name='admin_stat'),
+
+    path('tablejs/', views.tablejs, name='tablejs'),
+    path('birthdayjs/', views.birthdayjs, name='birthdayjs'),
+    path('mathjs/', views.mathjs, name='mathjs'),
+    path('elemjs', views.elemjs, name='elemjs'),
     
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),

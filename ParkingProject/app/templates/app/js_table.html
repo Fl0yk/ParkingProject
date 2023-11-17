@@ -1,0 +1,29 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<form action="" id="tableSize" method="POST">
+    {% csrf_token %}
+    <label style="display:block;">
+        Select size:
+        <input type="number" id="inputSize" required max="50" min="1" />
+    </label>
+    <label style="display:block;">
+        Max selected cells:
+        <input type="number" id="inputMax" required max="50" min="1" />
+    </label>
+    <input type="submit" value="Create table" />
+</form>
+
+<button id="transposeBtn">Transpose</button>
+<button id="addRowBtn">Add row</button>
+<button id="addColumnBtn">Add column</button>
+
+<div id="tableContainer">
+
+</div>
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+<script src="{% static 'app/scripts/tableScripts.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<br />
+<form id="elemsForm">
+    <label>
+        Name of element: <input type="text" name="nameElem" required />
+    </label>
+    <br>
+
+    <label>
+        Density: <input type="number" name="density" required min="0" step="0.0001">
+    </label>
+    <br>
+
+    <label>
+        Conductivity:
+        <select required name="conductivity">
+            <option value="conductor" selected>conductor</option>
+            <option value="semiconductor">semiconductor</option>
+            <option value="dielectric">dielectric</option>
+        </select>
+    </label>
+    <br />
+    <input type="submit" value="Add element" />
+</form>
+
+<br />
+<table id="elemTable" class="js">
+    <thead>
+        <tr class="js">
+            <th class="js">Name</th>
+            <th class="js">Density</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<br />
+<br />
+<table id="allElem" class="js">
+    <thead>
+        <tr class="js">
+            <th class="js">Name</th>
+            <th class="js">Density</th>
+            <th class="js">Conductivity</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<div id="inheritance">
+
+</div>
+
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+<script src="{% static 'app/scripts/ElementsScript.js' %}"></script>
+<script src="{% static 'app/scripts/PrototypeInheritanceScript.js' %}"></script>
+<script src="{% static 'app/scripts/ClassInheritanceScript.js' %}"></script>
+{% endblock %}

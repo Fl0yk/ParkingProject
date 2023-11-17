@@ -433,3 +433,17 @@ def UpBalance(request):
             request,
             'app/up_balance.html',
             context={'form' : form })
+
+def tablejs(request):
+    return render(request, 'app/js_table.html')
+
+def birthdayjs(request):
+    return render(request, 'app/js_birthday.html')
+
+def mathjs(request):
+    num_empty_placces = ParkingPlace.objects.filter(isEmpty__exact=True).count()
+    return render(request, 'app/js_dynamicAndMath.html',
+                  context={'data': num_empty_placces})
+
+def elemjs(request):
+    return render(request, 'app/js_elements.html')

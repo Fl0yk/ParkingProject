@@ -17,11 +17,15 @@
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
-    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <WebBrowserUrl>http://localhost:55416</WebBrowserUrl>
     <LaunchProvider>Django launcher</LaunchProvider>
     <DjangoSettingsModule>ParkingProject.settings</DjangoSettingsModule>
     <OutputPath>.</OutputPath>
     <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <PythonRunWebServerCommandType />
+    <PythonDebugWebServerCommandType />
+    <PythonRunWebServerCommandArguments>runserver --settings $(DjangoSettingsModule) %SERVER_PORT% $(CommandLineArguments)</PythonRunWebServerCommandArguments>
+    <PythonDebugWebServerCommandArguments>runserver --noreload --settings $(DjangoSettingsModule) %SERVER_PORT% $(CommandLineArguments)</PythonDebugWebServerCommandArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,6 +57,7 @@
     <Folder Include="app\static\app\content\" />
     <Folder Include="app\static\app\fonts\" />
     <Folder Include="app\static\app\Images\" />
+    <Folder Include="app\static\app\scripts\" />
     <Folder Include="app\static\app\Videos\" />
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
@@ -78,7 +83,14 @@
     <Content Include="app\static\app\content\table_stat.css">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="app\static\app\Images\car1r.png" />
+    <Content Include="app\static\app\Images\car1.png" />
+    <Content Include="app\static\app\Images\car2r.png" />
+    <Content Include="app\static\app\Images\car2.png" />
     <Content Include="app\static\app\Images\empty_cell.png" />
+    <Content Include="app\static\app\Images\left.png" />
+    <Content Include="app\static\app\Images\parking.jpg" />
+    <Content Include="app\static\app\Images\right.jpg" />
     <Content Include="app\static\app\Images\vacancy.png" />
     <Content Include="app\static\app\Images\banner.jpg" />
     <Content Include="app\static\app\Images\banner1.jpg" />
@@ -92,6 +104,17 @@
     <Content Include="app\static\app\Images\twitch.png" />
     <Content Include="app\static\app\Images\vk.png" />
     <Content Include="app\static\app\Policy.pdf" />
+    <Content Include="app\static\app\scripts\BirthdayScript.js" />
+    <Content Include="app\static\app\scripts\CardScript.js" />
+    <Content Include="app\static\app\scripts\CarouselScript.js" />
+    <Content Include="app\static\app\scripts\ClassInheritanceScript.js" />
+    <Content Include="app\static\app\scripts\DinamicMathScript.js" />
+    <Content Include="app\static\app\scripts\ElementsScript.js" />
+    <Content Include="app\static\app\scripts\GameScript.js" />
+    <Content Include="app\static\app\scripts\PrototypeInheritanceScript.js" />
+    <Content Include="app\static\app\scripts\ScrollScript.js" />
+    <Content Include="app\static\app\scripts\tableScripts.js" />
+    <Content Include="app\static\app\scripts\TimerScript.js" />
     <Content Include="app\static\app\Videos\horse.mp4" />
     <Content Include="app\static\app\Videos\obernites.mp3" />
     <Content Include="app\templates\app\admin_statistic.html" />
@@ -99,6 +122,9 @@
     <Content Include="app\templates\app\edit_auto.html" />
     <Content Include="app\templates\app\employees.html" />
     <Content Include="app\templates\app\empty_place_list.html" />
+    <Content Include="app\templates\app\js_birthday.html" />
+    <Content Include="app\templates\app\js_dynamicAndMath.html" />
+    <Content Include="app\templates\app\js_table.html" />
     <Content Include="app\templates\app\news.html" />
     <Content Include="app\templates\app\personal_page.html" />
     <Content Include="app\templates\app\registration.html" />
@@ -109,6 +135,7 @@
     <Content Include="app\templates\app\user_checks.html" />
     <Content Include="app\templates\app\user_places.html" />
     <Content Include="app\templates\app\vacancies.html" />
+    <Content Include="app\templates\app\js_elements.html" />
     <Content Include="app\templates\registration\logged_out.html" />
     <Content Include="app\templates\registration\login.html" />
     <Content Include="app\templates\registration\password_reset_complete.html" />

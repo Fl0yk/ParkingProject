@@ -1,0 +1,21 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<form action="" id="birthdayForm" method="POST">
+    {% csrf_token %}
+    <label style="display:block;">
+        Input your date of birth:
+        <input type="date" id="birthDate" required />
+    </label>
+    <input type="submit" value="Just do it!" />
+</form>
+
+<div id="content">
+
+</div>
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+<script src="{% static 'app/scripts/BirthdayScript.js' %}"></script>
+{% endblock %}

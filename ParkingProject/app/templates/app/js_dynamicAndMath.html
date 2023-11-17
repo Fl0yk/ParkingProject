@@ -1,0 +1,23 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+<br /><br /><br />
+<label>
+    Create/delete inputs: <input type="checkbox" id="inputs" />
+</label>
+<br />
+<form id="settingsForm">
+    
+</form>
+<br />
+<p>ddlfgdf dfhdghdgd</p>
+<p id="data" hidden>{{ data }}</p>
+<div id="math">
+
+</div>
+{% endblock %}
+
+{% load static %}
+{% block scripts %}
+<script src="{% static 'app/scripts/DinamicMathScript.js' %}"></script>
+{% endblock %}
